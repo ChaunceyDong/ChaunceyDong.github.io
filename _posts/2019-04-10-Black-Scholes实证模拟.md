@@ -89,7 +89,8 @@ ETF50每年年末进行分红，我们取2018年每股分红0.05元。
 
 历史波动率是最为广泛使用的波动率，即一段时间内的资产价格收益率（log return）的年化标准差。
 
-![download (https://ws1.sinaimg.cn/large/006tNc79ly1g1xocy9b21j31e60u0afu.jpg)](/Users/joyjigsaw/Downloads/download (1).png)
+
+![unknown.png](https://ws1.sinaimg.cn/large/006tNc79ly1g1xocy9b21j31e60u0afu.jpg)
 
 如上图，做出的关于标的资产ETF50的7、30、60、90、180、150天的历史波动率对比图。
 
