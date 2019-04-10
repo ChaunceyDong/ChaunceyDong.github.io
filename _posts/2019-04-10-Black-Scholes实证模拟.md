@@ -1,16 +1,16 @@
 ---
 layout:     post
-title:      ReactiveCocoa 进阶
-subtitle:   函数式编程框架 ReactiveCocoa 进阶
-date:       2017-01-06
-author:     BY
+title:      ETF50期权模拟
+subtitle:   基于Black-Scholes模型
+date:       2019-04-10
+author:     Chauncey
 header-img: img/post-bg-ios9-web.jpg
 catalog: true
 tags:
-    - iOS
-    - ReactiveCocoa
-    - 函数式编程
-    - 开源框架
+    - Black-Scholes
+    - Finance
+    - Python
+    - Time Series Analysis
 ---
 
 [TOC]
