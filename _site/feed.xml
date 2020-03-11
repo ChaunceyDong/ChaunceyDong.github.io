@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 Mar 2020 13:03:57 +0800</pubDate>
-    <lastBuildDate>Wed, 11 Mar 2020 13:03:57 +0800</lastBuildDate>
+    <pubDate>Wed, 11 Mar 2020 13:06:23 +0800</pubDate>
+    <lastBuildDate>Wed, 11 Mar 2020 13:06:23 +0800</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
@@ -344,8 +344,8 @@
 
 </description>
         <pubDate>Wed, 10 Apr 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F_new/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F_new/</guid>
+        <link>http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F/</guid>
         
         <category>Black-Scholes</category>
         
