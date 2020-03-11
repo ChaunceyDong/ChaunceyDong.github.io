@@ -10,7 +10,7 @@
     <meta name="keywords"  content="Chauncey, Quant, Python, Math, Statistics">
     <meta name="theme-color" content="#000000">
     
-    <title>ETF50期权模拟 - Chauncey's Blog</title>
+    <title>为博客添加 Gitalk 评论插件 - Chauncey's Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F/">
+    <link rel="canonical" href="http://localhost:4000/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-ios9-web.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-universe.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-ios9-web.jpg')
+        background-image: url('/img/post-bg-universe.jpg')
     }
 
     
@@ -169,21 +169,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Black-Scholes" title="Black-Scholes">Black-Scholes</a>
-                        
-                        <a class="tag" href="/tags/#Finance" title="Finance">Finance</a>
-                        
-                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
-                        <a class="tag" href="/tags/#Time Series Analysis" title="Time Series Analysis">Time Series Analysis</a>
+                        <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
                         
                     </div>
-                    <h1>ETF50期权模拟</h1>
+                    <h1>为博客添加 Gitalk 评论插件</h1>
                     
                     
-                    <h2 class="subheading">基于Black-Scholes模型</h2>
+                    <h2 class="subheading">BY Blog 添加 Gitalk 的评论插件了</h2>
                     
-                    <span class="meta">Posted by Chauncey on April 10, 2019</span>
+                    <span class="meta">Posted by BY on December 19, 2017</span>
                 </div>
             </div>
         </div>
@@ -201,350 +195,125 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="black-scholes公式模拟期权">Black-Scholes公式模拟期权</h1>
+				<h2 id="前言">前言</h2>
 
-<h2 id="期权数据获取">期权数据获取</h2>
+<p>由于 <strong>Disqus</strong> 对于国内网路的支持十分糟糕，很多人反映 Disqus 评论插件一直加载不出来。而我一直是处于翻墙状态的~（话说你们做程序员的都不翻墙用Google的吗😅，哈哈，吐嘈下）</p>
 
-<p>通过Tushare获取所有华夏上证50ETF期权数据。选取17年09月执行价2.30看涨期权，编码‘10000844.SH’。得到执行价、期权到期日、期权有效期等信息。</p>
+<p>针对这个问题，我添加了<a href="https://github.com/gitalk/gitalk">Gitalk</a> 评论插件。在此，非常感谢 <a href="https://github.com/FeDemo">@FeDemo</a> 的推荐 。</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x115obzqj31ae0j8n2j.jpg" alt="image-20190410041216194" /></p>
+<h2 id="正文">正文</h2>
 
-<h2 id="期权交易数据获取">期权交易数据获取</h2>
+<h3 id="gitalk-评论插件">Gitalk 评论插件</h3>
 
-<p>通过Tushare获取17年09月执行价2.30看涨期权，所有交易日的日数据。以该期权每日收盘价为纵坐标，日期为横坐标作图，得到该期权交易变化曲线。</p>
+<p>首先来看看 Gitalk 的界面和功能：</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x13snkvhj313d0qqta4.jpg" alt="unknown.png" /></p>
+<p><a href="https://gitalk.github.io/"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm4u3j0lmj30nk0kl40i.jpg" alt="" /></a></p>
 
-<h2 id="标的资产etf50基金交易数据获取">标的资产（ETF50基金）交易数据获取</h2>
+<p>gitalk 使用 Github 帐号登录，界面干净整洁，最喜欢的一点是支持 <code class="highlighter-rouge">MarkDown语法</code>。</p>
 
-<p>通过Tushare，获取标的资产 ETFF50的每日交易数日（日期为如上所提期权的有效期及其前300天）。以该基金每日收盘价为纵坐标，日期为横坐标作图，得到该基金交易变化曲线。</p>
+<h3 id="原理">原理</h3>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x14626npj313d0qpgn8.jpg" alt="unknown.png" /></p>
+<p>Gitalk 是一个利用 Github API,基于 Github issue 和 Preact 开发的评论插件，在 Gitalk 之前还有一个 <a href="https://github.com/imsun/gitment">gitment</a> 插件也是基于这个原理开发的,不过 gitment 已经很久没人维护了。</p>
 
-<h2 id="历史波动率过去30天收益率的年化标准差计算">历史波动率（过去30天收益率的年化标准差）计算</h2>
+<p>可以看到在 gitalk 的评论框进行评论时，其实就是在对应的 issue 上提问题。</p>
 
-<p>得到ETF50日交易记录后，计算日收益率(log return)，并选取30天为移动窗口，计算标准差，并进行年化处理，得到历史波动率。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm5916av1j30i209rab7.jpg" alt="gitalk评论框" /></p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1ct52vmj31420qqmz8.jpg" alt="unknown.png" /></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm596ggkfj30mx0gfjuk.jpg" alt="Github issue" /></p>
 
-<h2 id="无风险利率shibor数据获取">无风险利率（Shibor）数据获取</h2>
+<h3 id="集成-gitalk">集成 Gitalk</h3>
 
-<p>通过Tushare，获取所需期权交易期内，Shibor的利率数据，并转化成连续复利形式。绘制无风险利率曲线。</p>
+<p>到这里，你应该对 Gitalk 有个大致的了解了，现在，开始集成 gitalk 插件吧。</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1fwdcyoj31420qqgmi.jpg" alt="unknown.png" /></p>
+<p>将这段代码插入到你的网站：</p>
 
-<h2 id="根据black-sholes计算期权理论价格">根据Black-Sholes计算期权理论价格</h2>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--</span> <span class="nx">Gitalk</span> <span class="err">评论</span> <span class="nx">start</span>  <span class="o">--&gt;</span>
 
-<p>建立Black-Sholes模型，代入上一步中所获取的参数，计算得到期权的理论价格，并绘制曲线，与期权实际价格进行比较。</p>
+<span class="c">&lt;!--</span> <span class="nx">Link</span> <span class="nx">Gitalk</span> <span class="err">的支持文件</span>  <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="dl">"</span><span class="s2">stylesheet</span><span class="dl">"</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://unpkg.com/gitalk/dist/gitalk.css</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://unpkg.com/gitalk@latest/dist/gitalk.min.js</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">gitalk-container</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text/javascript</span><span class="dl">"</span><span class="o">&gt;</span>
+    <span class="kd">var</span> <span class="nx">gitalk</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Gitalk</span><span class="p">({</span>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1ge70poj30ua0jcq67.jpg" alt="image-20190410042654921" /></p>
+    <span class="c1">// gitalk的主要参数</span>
+		<span class="na">clientID</span><span class="p">:</span> <span class="s2">`Github Application clientID`</span><span class="p">,</span>
+		<span class="na">clientSecret</span><span class="p">:</span> <span class="s2">`Github Application clientSecret`</span><span class="p">,</span>
+		<span class="na">repo</span><span class="p">:</span> <span class="s2">`存储你评论 issue 的 Github 仓库名`</span><span class="p">,</span>
+		<span class="na">owner</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Github 用户名</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">admin</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Github 用户名</span><span class="dl">'</span><span class="p">],</span>
+		<span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">页面的唯一标识，gitalk会根据这个标识自动创建的issue的标签</span><span class="dl">'</span><span class="p">,</span>
+    
+    <span class="p">});</span>
+    <span class="nx">gitalk</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">gitalk-container</span><span class="dl">'</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+<span class="c">&lt;!--</span> <span class="nx">Gitalk</span> <span class="nx">end</span> <span class="o">--&gt;</span>
+</code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1jwbyrpj313d0qqjtp.jpg" alt="unknown.png" /></p>
+<p>我们需要关心的就是配置下面几个参数：</p>
 
-<p>重复以上步骤，对2018年三月份六月份九月份十二月份，每个月份各选取一只期权进行BS模拟，对比如下图</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">clientID</span><span class="p">:</span> <span class="s2">`Github Application clientID`</span><span class="p">,</span>
+<span class="nx">clientSecret</span><span class="p">:</span> <span class="s2">`Github Application clientSecret`</span><span class="p">,</span>
+<span class="nx">repo</span><span class="p">:</span> <span class="s2">`Github 仓库名`</span><span class="p">,</span><span class="c1">//存储你评论 issue 的 Github 仓库名（建议直接用 GitHub Page 的仓库名）</span>
+<span class="nx">owner</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Github 用户名</span><span class="dl">'</span><span class="p">,</span>
+<span class="nx">admin</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Github 用户名</span><span class="dl">'</span><span class="p">],</span> <span class="c1">//这个仓库的管理员，可以有多个，用数组表示，一般写自己,</span>
+<span class="nx">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">window.location.pathname</span><span class="dl">'</span><span class="p">,</span> <span class="c1">//页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识</span>
+</code></pre></div></div>
+<p>当然，还有其他很多参数，有兴趣的话可以 <a href="https://github.com/gitalk/gitalk#options"> 点这里</a>。</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x214b03tj314h0u0n5a.jpg" alt="unknown.png" /></p>
+<p>比如我就增加了这个全屏遮罩的参数。</p>
 
-<p>由以上五次模拟图可以看出，BS模拟的价格和真实的价格差距很小。另外，2018年数据比2017年更加难以模拟，特别是第一季度和第四季度，原因是2018年中美贸易战和A股股灾严重影响了市场，使得市场不稳定，模型稍微和实际结果有偏离。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>distractionFreeMode: true,
+</code></pre></div></div>
 
-<h1 id="black-scholes优化考虑红利">Black-Scholes优化，考虑红利</h1>
+<h3 id="创建-github-application">创建 Github Application</h3>
 
-<p>在考虑红利之后，通过Tushare，获取了ETF50基金的分红数据，如下。</p>
+<p>Gitalk 需要一个 <strong>Github Application</strong>，<a href="https://github.com/settings/applications/new">点击这里申请</a>。</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1ws98njv7j30fo0ooac0.jpg" alt="image-20190409230831539" /></p>
+<p>填写下面参数：</p>
 
-<p>ETF50每年年末进行分红，我们取2018年每股分红0.05元。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jaib6fj30jo0gaacs.jpg" alt="" /></p>
 
-<p>绘制了不考虑红利的原始BS模型及考虑了红利的BS模型的模拟结果和真实价格的对比，如下图所示。</p>
+<p>点击创建</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wsjb6jkij30xa0gwaby.jpg" alt="image-20190409231815968" /></p>
+<p>获取 <code class="highlighter-rouge">Client ID</code> 和 <code class="highlighter-rouge">Client Secret</code> 填入你的我们 Gitalk 参数中</p>
 
-<p>由图可以看出，经过红利修正过的BS模型所模拟出来的价格，比原始BS模型，更加接近真实价格。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jrzff6j30lc0budhp.jpg" alt="" /></p>
 
-<h1 id="波动率修正">波动率修正</h1>
+<p>当你参数都设置好，将代码推送到 Github 仓库后，没什么问题的话，当你点击进入你的博客页面后就会出现评论框了。</p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wswwpqv3j31ho08qjvt.jpg" alt="image-20190409233123555" /></p>
+<p>当你用 github 帐号登录（管理员），并且第一次加载该会比较慢，因为第一次加载会自动在你 <code class="highlighter-rouge">repo</code> 的仓库下创建对应 issue。</p>
 
-<p>在Black-Schole公式中，输入的五个参数，除了波动率外，都是固定且不可改变的：基础资产的价格、无风险利率由市场决定；期权的执行价、有效期由期权合约本身决定。故，要想通过Black-Schole方程获得最为理想的理论价格，”波动率”参数最为重要。</p>
+<p>比如说这样：</p>
 
-<h2 id="历史波动率">历史波动率</h2>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fmm867n88cj30l809mjse.jpg" alt="" /></p>
 
-<p>历史波动率是最为广泛使用的波动率，即一段时间内的资产价格收益率（log return）的年化标准差。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm8a0i0jkj30rr0ct42t.jpg" alt="" /></p>
 
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1xocy9b21j31e60u0afu.jpg" alt="unknown.png" /></p>
+<p>当然，你也可以手动创建issue作为 gitalk评论容器。只要有 <code class="highlighter-rouge">Gitalk</code> 标签 和 <code class="highlighter-rouge">id</code> 对应标签就可以。比我我自己创建的 <a href="https://github.com/qiubaiying/qiubaiying.github.io/issues/38">About issue</a> 。</p>
 
-<p>如上图，做出的关于标的资产ETF50的7、30、60、90、180、150天的历史波动率对比图。</p>
+<h1 id="结语">结语</h1>
 
-<p>7天的历史波动率波动较大，拥有较多噪音；而150天的波动率太过平缓，丢失太多信息。</p>
+<p>最后说几句吐嘈几句， Gitalk 需要你点开每篇文章的页面才会创建对应的 issue,对我来说真是个糟糕的体验（文章有点多~）。</p>
 
-<p>如何去评判波动率的方法优劣？我们需要一个对标物——隐含波动率，Black-Schole公式对真实价格的解。</p>
+<p>当然，也有解决办法，这篇 <a href="https://draveness.me/git-comments-initialize">自动初始化 Gitalk 和 Gitment 评论</a>，就解决了这个问题。</p>
 
-<h2 id="隐含波动率">隐含波动率</h2>
-
-<p>理论上，我们应该将真实的标的物市场价格和其他四个变量带入BS方程中，来解出波动率的精确解——隐含波动率。但是由于BS方程过于负责，此法几乎不可能。</p>
-
-<p>于是，我们利用数值分析方法——牛顿法，在可接受的误差范围（10^-5）内，求出BS方程的根，即隐含波动率。</p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wuyya3pjj31op0u041u.jpg" alt="unknown.png" />如上图，我们对比了60、150、210天的历史波动率和隐含波动率，由图可直观看出60天的历史波动率过于波动，而210天的波动率过于平稳并且波动方向过于迟缓，150天的历史波动率拟合较好。</p>
-
-<p>计算三不同波动率分别与隐含波动率的平均百分比绝对误差，如下图。</p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wv1ai9mjj31500hqdil.jpg" alt="image-20190410004448309" /></p>
-
-<p>150天的历史波动率平均百分比绝对误差最低。</p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wva5f8exj316d0u0qcl.jpg" alt="image-20190410005319623" /></p>
-
-<p>如上图，将三不同的历史波动率带入BS模型求的模拟值和真实值做对比。</p>
-
-<p>图中可以较明显的看出150天历史波动率模拟出来的价值比较接近灰色的真实价格；并且三个模拟值和真实值的平均百分比绝对误差也是150天的最低。</p>
-
-<h2 id="exponential-weighted-moving-average">Exponential Weighted Moving Average</h2>
-
-<p>对于历史波动率来说，过去的天数对于所说要求的当天波动率来说重要性是一样的，昨天和前天一样重要。</p>
-
-<p>如果给过去的数据重要性加一个权重，使t-1的数据对t数据很重要，t-2次之，t-3再次之，以此类推。这即是EWMA的思想。</p>
-
-<p>权重 <script type="math/tex">\lambda= \frac{N-1}{N+1}</script></p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wwvu7vonj31o60u0dk1.jpg" alt="unknown.png" /></p>
-
-<p>如图，作出时长分别是1周、1个月和5个月的EWMA拟合的波动率与隐含波动率的对比图。</p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wwwtdcqnj31600f2mz9.jpg" alt="image-20190410014942149" /></p>
-
-<p>如上图，计算不同时长的EWMA与隐含波动率的平均百分比绝对误差。</p>
-
-<h2 id="garch11">GARCH(1,1)</h2>
-
-<p>GARCH(1,1)与EWMA不同的地方在于，GARCH多了一个常数参数项。GARCH的假设认为，波动率是有粘性的(persistence)，过去的强（若）波动会延续到未来，所以多出的常数参数项使其具有类似”均值回归”的特性。</p>
-
-<h3 id="garch模型建立">GARCH模型建立</h3>
-
-<p>输出的结果如下，且Convariance estimator显示是robust。</p>
-
-<p>AR - GARCH Model Results</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right">Dep. Variable:</th>
-      <th style="text-align: right">y</th>
-      <th>R-squared:</th>
-      <th>0.045</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">Mean Model:</td>
-      <td style="text-align: right">AR</td>
-      <td>Adj. R-squared:</td>
-      <td>-0.051</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">Vol Model:</td>
-      <td style="text-align: right">GARCH</td>
-      <td>Log-Likelihood:</td>
-      <td>66.8673</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">Distribution:</td>
-      <td style="text-align: right">Normal</td>
-      <td>AIC:</td>
-      <td>-109.735</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">Method:</td>
-      <td style="text-align: right">Maximum Likelihood</td>
-      <td>BIC:</td>
-      <td>-79.8710</td>
-    </tr>
-    <tr>
-      <td style="text-align: right"> </td>
-      <td style="text-align: right"> </td>
-      <td>No. Observations:</td>
-      <td>89</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">Date:</td>
-      <td style="text-align: right">Wed, Apr 10 2019</td>
-      <td>Df Residuals:</td>
-      <td>77</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">Time:</td>
-      <td style="text-align: right">03:44:24</td>
-      <td>Df Model:</td>
-      <td>12</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Mean Model</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right"> </th>
-      <th style="text-align: right">coef</th>
-      <th style="text-align: right">std err</th>
-      <th style="text-align: right">t</th>
-      <th style="text-align: right">P&gt;|t|</th>
-      <th>95.0% Conf. Int.</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">Const</td>
-      <td style="text-align: right">-0.0307</td>
-      <td style="text-align: right">1.124e-02</td>
-      <td style="text-align: right">-2.733</td>
-      <td style="text-align: right">6.269e-03</td>
-      <td>[-5.274e-02,-8.691e-03]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[1]</td>
-      <td style="text-align: right">0.1976</td>
-      <td style="text-align: right">0.125</td>
-      <td style="text-align: right">1.577</td>
-      <td style="text-align: right">0.115</td>
-      <td>[-4.801e-02, 0.443]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[2]</td>
-      <td style="text-align: right">-0.2210</td>
-      <td style="text-align: right">0.123</td>
-      <td style="text-align: right">-1.802</td>
-      <td style="text-align: right">7.157e-02</td>
-      <td>[ -0.461,1.940e-02]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[3]</td>
-      <td style="text-align: right">0.1046</td>
-      <td style="text-align: right">0.141</td>
-      <td style="text-align: right">0.740</td>
-      <td style="text-align: right">0.460</td>
-      <td>[ -0.173, 0.382]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[4]</td>
-      <td style="text-align: right">-0.2671</td>
-      <td style="text-align: right">0.145</td>
-      <td style="text-align: right">-1.847</td>
-      <td style="text-align: right">6.476e-02</td>
-      <td>[ -0.551,1.635e-02]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[5]</td>
-      <td style="text-align: right">-0.0467</td>
-      <td style="text-align: right">0.123</td>
-      <td style="text-align: right">-0.381</td>
-      <td style="text-align: right">0.703</td>
-      <td>[ -0.287, 0.193]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[6]</td>
-      <td style="text-align: right">-0.1292</td>
-      <td style="text-align: right">0.140</td>
-      <td style="text-align: right">-0.926</td>
-      <td style="text-align: right">0.354</td>
-      <td>[ -0.403, 0.144]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[7]</td>
-      <td style="text-align: right">-0.0406</td>
-      <td style="text-align: right">0.146</td>
-      <td style="text-align: right">-0.279</td>
-      <td style="text-align: right">0.780</td>
-      <td>[ -0.326, 0.245]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">y[8]</td>
-      <td style="text-align: right">0.0537</td>
-      <td style="text-align: right">0.135</td>
-      <td style="text-align: right">0.398</td>
-      <td style="text-align: right">0.691</td>
-      <td>[ -0.211, 0.318]</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Volatility Model</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right"> </th>
-      <th style="text-align: right">coef</th>
-      <th style="text-align: right">std err</th>
-      <th style="text-align: right">t</th>
-      <th style="text-align: right">P&gt;|t|</th>
-      <th>95.0% Conf. Int.</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">omega</td>
-      <td style="text-align: right">2.4885e-04</td>
-      <td style="text-align: right">5.620e-04</td>
-      <td style="text-align: right">0.443</td>
-      <td style="text-align: right">0.658</td>
-      <td>[-8.526e-04,1.350e-03]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">alpha[1]</td>
-      <td style="text-align: right">0.0604</td>
-      <td style="text-align: right">4.475e-02</td>
-      <td style="text-align: right">1.351</td>
-      <td style="text-align: right">0.177</td>
-      <td>[-2.727e-02, 0.148]</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">beta[1]</td>
-      <td style="text-align: right">0.9396</td>
-      <td style="text-align: right">6.462e-02</td>
-      <td style="text-align: right">14.539</td>
-      <td style="text-align: right">6.873e-48</td>
-      <td>[ 0.813, 1.066]</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>由上表参数可得GARCH公式：</p>
-
-<p>​							<script type="math/tex">\sigma_{t}^{2} = 0.000280 +0.075702\alpha_{t-1}^{2} + 0.924298\sigma_{t-1}^{2}</script></p>
-
-<p>​					<script type="math/tex">r_{t} =  -0.0307+0.1976a_{t-1} -0.2210a_{t-2} +0.1046a_{t-3}-0.2671a_{t-4}-0.0467a_{t-5} -0.1292a_{t-6}-0.0406a_{t-7}+0.0537a_{t-8}</script></p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x0ba0cvbj30l80en3zw.jpg" alt="unknown.png" /></p>
-
-<p>观察上图，第一张图为标准化残差，近似平稳序列，说明模型在一定程度上是正确的；</p>
-
-<p>第二张图，黄色为原始收益率序列、蓝色为条件异方差序列，可以发现条件异方差很好得表现出了波动率。</p>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x0bhdrkkj30lh0en752.jpg" alt="unknown.png" /></p>
-
-<p>观察上图的拟合图发现，在方差的还原上还是不错的。</p>
-
-<h3 id="波动率预测">波动率预测</h3>
-
-<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x0cao6qsj31d40gwwgs.jpg" alt="unknown.png" /></p>
-
-<p>观察上述预测图发现，对于接下来的1、2天的波动率预测较为接近，然后后面几天的预测逐渐偏小，最后一两天又逐渐符合现实波动率。</p>
-
+<p>最后，<a href="https://github.com/qiubaiying/qiubaiying.github.io">给个 star 吧</a>~</p>
 
 
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/" data-toggle="tooltip" data-placement="top" title="为博客添加 Gitalk 评论插件">
-                        Previous<br>
-                        <span>为博客添加 Gitalk 评论插件</span>
+                    
+                    <li class="next">
+                        <a href="/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F/" data-toggle="tooltip" data-placement="top" title="ETF50期权模拟">
+                        Next<br>
+                        <span>ETF50期权模拟</span>
                         </a>
                     </li>
-                    
                     
                 </ul>
 
