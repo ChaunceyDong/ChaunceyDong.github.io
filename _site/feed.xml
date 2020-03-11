@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chauncey Blog</title>
+    <description>Every failure is leading towards success.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 11 Mar 2020 13:03:57 +0800</pubDate>
+    <lastBuildDate>Wed, 11 Mar 2020 13:03:57 +0800</lastBuildDate>
+    <generator>Jekyll v4.0.0</generator>
+    
+      <item>
+        <title>ETF50期权模拟</title>
+        <description>&lt;h1 id=&quot;black-scholes公式模拟期权&quot;&gt;Black-Scholes公式模拟期权&lt;/h1&gt;
+
+&lt;h2 id=&quot;期权数据获取&quot;&gt;期权数据获取&lt;/h2&gt;
+
+&lt;p&gt;通过Tushare获取所有华夏上证50ETF期权数据。选取17年09月执行价2.30看涨期权，编码‘10000844.SH’。得到执行价、期权到期日、期权有效期等信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x115obzqj31ae0j8n2j.jpg&quot; alt=&quot;image-20190410041216194&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;期权交易数据获取&quot;&gt;期权交易数据获取&lt;/h2&gt;
+
+&lt;p&gt;通过Tushare获取17年09月执行价2.30看涨期权，所有交易日的日数据。以该期权每日收盘价为纵坐标，日期为横坐标作图，得到该期权交易变化曲线。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x13snkvhj313d0qqta4.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;标的资产etf50基金交易数据获取&quot;&gt;标的资产（ETF50基金）交易数据获取&lt;/h2&gt;
+
+&lt;p&gt;通过Tushare，获取标的资产 ETFF50的每日交易数日（日期为如上所提期权的有效期及其前300天）。以该基金每日收盘价为纵坐标，日期为横坐标作图，得到该基金交易变化曲线。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x14626npj313d0qpgn8.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;历史波动率过去30天收益率的年化标准差计算&quot;&gt;历史波动率（过去30天收益率的年化标准差）计算&lt;/h2&gt;
+
+&lt;p&gt;得到ETF50日交易记录后，计算日收益率(log return)，并选取30天为移动窗口，计算标准差，并进行年化处理，得到历史波动率。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1ct52vmj31420qqmz8.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;无风险利率shibor数据获取&quot;&gt;无风险利率（Shibor）数据获取&lt;/h2&gt;
+
+&lt;p&gt;通过Tushare，获取所需期权交易期内，Shibor的利率数据，并转化成连续复利形式。绘制无风险利率曲线。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1fwdcyoj31420qqgmi.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;根据black-sholes计算期权理论价格&quot;&gt;根据Black-Sholes计算期权理论价格&lt;/h2&gt;
+
+&lt;p&gt;建立Black-Sholes模型，代入上一步中所获取的参数，计算得到期权的理论价格，并绘制曲线，与期权实际价格进行比较。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1ge70poj30ua0jcq67.jpg&quot; alt=&quot;image-20190410042654921&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x1jwbyrpj313d0qqjtp.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;重复以上步骤，对2018年三月份六月份九月份十二月份，每个月份各选取一只期权进行BS模拟，对比如下图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x214b03tj314h0u0n5a.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由以上五次模拟图可以看出，BS模拟的价格和真实的价格差距很小。另外，2018年数据比2017年更加难以模拟，特别是第一季度和第四季度，原因是2018年中美贸易战和A股股灾严重影响了市场，使得市场不稳定，模型稍微和实际结果有偏离。&lt;/p&gt;
+
+&lt;h1 id=&quot;black-scholes优化考虑红利&quot;&gt;Black-Scholes优化，考虑红利&lt;/h1&gt;
+
+&lt;p&gt;在考虑红利之后，通过Tushare，获取了ETF50基金的分红数据，如下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1ws98njv7j30fo0ooac0.jpg&quot; alt=&quot;image-20190409230831539&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ETF50每年年末进行分红，我们取2018年每股分红0.05元。&lt;/p&gt;
+
+&lt;p&gt;绘制了不考虑红利的原始BS模型及考虑了红利的BS模型的模拟结果和真实价格的对比，如下图所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wsjb6jkij30xa0gwaby.jpg&quot; alt=&quot;image-20190409231815968&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由图可以看出，经过红利修正过的BS模型所模拟出来的价格，比原始BS模型，更加接近真实价格。&lt;/p&gt;
+
+&lt;h1 id=&quot;波动率修正&quot;&gt;波动率修正&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wswwpqv3j31ho08qjvt.jpg&quot; alt=&quot;image-20190409233123555&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在Black-Schole公式中，输入的五个参数，除了波动率外，都是固定且不可改变的：基础资产的价格、无风险利率由市场决定；期权的执行价、有效期由期权合约本身决定。故，要想通过Black-Schole方程获得最为理想的理论价格，”波动率”参数最为重要。&lt;/p&gt;
+
+&lt;h2 id=&quot;历史波动率&quot;&gt;历史波动率&lt;/h2&gt;
+
+&lt;p&gt;历史波动率是最为广泛使用的波动率，即一段时间内的资产价格收益率（log return）的年化标准差。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1xocy9b21j31e60u0afu.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如上图，做出的关于标的资产ETF50的7、30、60、90、180、150天的历史波动率对比图。&lt;/p&gt;
+
+&lt;p&gt;7天的历史波动率波动较大，拥有较多噪音；而150天的波动率太过平缓，丢失太多信息。&lt;/p&gt;
+
+&lt;p&gt;如何去评判波动率的方法优劣？我们需要一个对标物——隐含波动率，Black-Schole公式对真实价格的解。&lt;/p&gt;
+
+&lt;h2 id=&quot;隐含波动率&quot;&gt;隐含波动率&lt;/h2&gt;
+
+&lt;p&gt;理论上，我们应该将真实的标的物市场价格和其他四个变量带入BS方程中，来解出波动率的精确解——隐含波动率。但是由于BS方程过于负责，此法几乎不可能。&lt;/p&gt;
+
+&lt;p&gt;于是，我们利用数值分析方法——牛顿法，在可接受的误差范围（10^-5）内，求出BS方程的根，即隐含波动率。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wuyya3pjj31op0u041u.jpg&quot; alt=&quot;unknown.png&quot; /&gt;如上图，我们对比了60、150、210天的历史波动率和隐含波动率，由图可直观看出60天的历史波动率过于波动，而210天的波动率过于平稳并且波动方向过于迟缓，150天的历史波动率拟合较好。&lt;/p&gt;
+
+&lt;p&gt;计算三不同波动率分别与隐含波动率的平均百分比绝对误差，如下图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wv1ai9mjj31500hqdil.jpg&quot; alt=&quot;image-20190410004448309&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;150天的历史波动率平均百分比绝对误差最低。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wva5f8exj316d0u0qcl.jpg&quot; alt=&quot;image-20190410005319623&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如上图，将三不同的历史波动率带入BS模型求的模拟值和真实值做对比。&lt;/p&gt;
+
+&lt;p&gt;图中可以较明显的看出150天历史波动率模拟出来的价值比较接近灰色的真实价格；并且三个模拟值和真实值的平均百分比绝对误差也是150天的最低。&lt;/p&gt;
+
+&lt;h2 id=&quot;exponential-weighted-moving-average&quot;&gt;Exponential Weighted Moving Average&lt;/h2&gt;
+
+&lt;p&gt;对于历史波动率来说，过去的天数对于所说要求的当天波动率来说重要性是一样的，昨天和前天一样重要。&lt;/p&gt;
+
+&lt;p&gt;如果给过去的数据重要性加一个权重，使t-1的数据对t数据很重要，t-2次之，t-3再次之，以此类推。这即是EWMA的思想。&lt;/p&gt;
+
+&lt;p&gt;权重 &lt;script type=&quot;math/tex&quot;&gt;\lambda= \frac{N-1}{N+1}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wwvu7vonj31o60u0dk1.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如图，作出时长分别是1周、1个月和5个月的EWMA拟合的波动率与隐含波动率的对比图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1wwwtdcqnj31600f2mz9.jpg&quot; alt=&quot;image-20190410014942149&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如上图，计算不同时长的EWMA与隐含波动率的平均百分比绝对误差。&lt;/p&gt;
+
+&lt;h2 id=&quot;garch11&quot;&gt;GARCH(1,1)&lt;/h2&gt;
+
+&lt;p&gt;GARCH(1,1)与EWMA不同的地方在于，GARCH多了一个常数参数项。GARCH的假设认为，波动率是有粘性的(persistence)，过去的强（若）波动会延续到未来，所以多出的常数参数项使其具有类似”均值回归”的特性。&lt;/p&gt;
+
+&lt;h3 id=&quot;garch模型建立&quot;&gt;GARCH模型建立&lt;/h3&gt;
+
+&lt;p&gt;输出的结果如下，且Convariance estimator显示是robust。&lt;/p&gt;
+
+&lt;p&gt;AR - GARCH Model Results&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Dep. Variable:&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;y&lt;/th&gt;
+      &lt;th&gt;R-squared:&lt;/th&gt;
+      &lt;th&gt;0.045&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Mean Model:&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;AR&lt;/td&gt;
+      &lt;td&gt;Adj. R-squared:&lt;/td&gt;
+      &lt;td&gt;-0.051&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Vol Model:&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;GARCH&lt;/td&gt;
+      &lt;td&gt;Log-Likelihood:&lt;/td&gt;
+      &lt;td&gt;66.8673&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Distribution:&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Normal&lt;/td&gt;
+      &lt;td&gt;AIC:&lt;/td&gt;
+      &lt;td&gt;-109.735&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Method:&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Maximum Likelihood&lt;/td&gt;
+      &lt;td&gt;BIC:&lt;/td&gt;
+      &lt;td&gt;-79.8710&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
+      &lt;td&gt;No. Observations:&lt;/td&gt;
+      &lt;td&gt;89&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Date:&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Wed, Apr 10 2019&lt;/td&gt;
+      &lt;td&gt;Df Residuals:&lt;/td&gt;
+      &lt;td&gt;77&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Time:&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;03:44:24&lt;/td&gt;
+      &lt;td&gt;Df Model:&lt;/td&gt;
+      &lt;td&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Mean Model&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;coef&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;std err&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;t&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;P&amp;gt;|t|&lt;/th&gt;
+      &lt;th&gt;95.0% Conf. Int.&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Const&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.0307&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1.124e-02&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-2.733&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;6.269e-03&lt;/td&gt;
+      &lt;td&gt;[-5.274e-02,-8.691e-03]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[1]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.1976&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.125&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1.577&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.115&lt;/td&gt;
+      &lt;td&gt;[-4.801e-02, 0.443]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[2]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.2210&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.123&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-1.802&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;7.157e-02&lt;/td&gt;
+      &lt;td&gt;[ -0.461,1.940e-02]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[3]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.1046&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.141&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.740&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.460&lt;/td&gt;
+      &lt;td&gt;[ -0.173, 0.382]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[4]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.2671&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.145&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-1.847&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;6.476e-02&lt;/td&gt;
+      &lt;td&gt;[ -0.551,1.635e-02]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[5]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.0467&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.123&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.381&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.703&lt;/td&gt;
+      &lt;td&gt;[ -0.287, 0.193]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[6]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.1292&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.140&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.926&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.354&lt;/td&gt;
+      &lt;td&gt;[ -0.403, 0.144]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[7]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.0406&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.146&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-0.279&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.780&lt;/td&gt;
+      &lt;td&gt;[ -0.326, 0.245]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;y[8]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.0537&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.135&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.398&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.691&lt;/td&gt;
+      &lt;td&gt;[ -0.211, 0.318]&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Volatility Model&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;coef&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;std err&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;t&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;P&amp;gt;|t|&lt;/th&gt;
+      &lt;th&gt;95.0% Conf. Int.&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;omega&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2.4885e-04&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;5.620e-04&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.443&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.658&lt;/td&gt;
+      &lt;td&gt;[-8.526e-04,1.350e-03]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;alpha[1]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.0604&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4.475e-02&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1.351&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.177&lt;/td&gt;
+      &lt;td&gt;[-2.727e-02, 0.148]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;beta[1]&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.9396&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;6.462e-02&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;14.539&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;6.873e-48&lt;/td&gt;
+      &lt;td&gt;[ 0.813, 1.066]&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;由上表参数可得GARCH公式：&lt;/p&gt;
+
+&lt;p&gt;​							&lt;script type=&quot;math/tex&quot;&gt;\sigma_{t}^{2} = 0.000280 +0.075702\alpha_{t-1}^{2} + 0.924298\sigma_{t-1}^{2}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;​					&lt;script type=&quot;math/tex&quot;&gt;r_{t} =  -0.0307+0.1976a_{t-1} -0.2210a_{t-2} +0.1046a_{t-3}-0.2671a_{t-4}-0.0467a_{t-5} -0.1292a_{t-6}-0.0406a_{t-7}+0.0537a_{t-8}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x0ba0cvbj30l80en3zw.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;观察上图，第一张图为标准化残差，近似平稳序列，说明模型在一定程度上是正确的；&lt;/p&gt;
+
+&lt;p&gt;第二张图，黄色为原始收益率序列、蓝色为条件异方差序列，可以发现条件异方差很好得表现出了波动率。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x0bhdrkkj30lh0en752.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;观察上图的拟合图发现，在方差的还原上还是不错的。&lt;/p&gt;
+
+&lt;h3 id=&quot;波动率预测&quot;&gt;波动率预测&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/006tNc79ly1g1x0cao6qsj31d40gwwgs.jpg&quot; alt=&quot;unknown.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;观察上述预测图发现，对于接下来的1、2天的波动率预测较为接近，然后后面几天的预测逐渐偏小，最后一两天又逐渐符合现实波动率。&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 10 Apr 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F_new/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/10/Black-Scholes%E5%AE%9E%E8%AF%81%E6%A8%A1%E6%8B%9F_new/</guid>
+        
+        <category>Black-Scholes</category>
+        
+        <category>Finance</category>
+        
+        <category>Python</category>
+        
+        <category>Time Series Analysis</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
