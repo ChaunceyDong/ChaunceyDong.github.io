@@ -1,0 +1,400 @@
+I"�-<h1 id="raw-data">Raw Data</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'prices.csv'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">prices</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ABC,2017-09-05,163.09,164.24,160.21,162.63,29417590.0,162.49,29414672.0
+ABC,2017-09-06,162.85,162.46,159.99,161.13,21131267.0,162.44,21169319.0
+ABC,2017-09-07,162.11,162.7,160.65,161.26,21722502.0,161.46,21719856.0
+ABC,2017-09-08,160.41,160.89,159.31,158.05,28311012.0,158.26,28305810.0
+ABC,2017-09-11,161.09,162.14,159.54,161.29,31075573.0,160.97,31163734.0
+ABC,2017-09-12,162.54,164.61,159.52,161.09,70921229.0,160.62,71097150.0
+ABC,2017-09-13,160.01,160.51,158.22,159.29,44580353.0,159.07,44260255.0
+EFG,2017-09-05,154.45,154.69,153.17,154.52,1270203.0,153.58,1270679.0
+EFG,2017-09-06,155.03,155.14,153.89,154.45,1195987.0,154.06,1196107.0
+EFG,2017-09-07,154.73,155.36,153.6,155.68,1420730.0,155.6,1409098.0
+EFG,2017-09-08,156.01,155.91,154.17,155.86,1438929.0,156.08,1445338.0
+EFG,2017-09-11,157.07,157.71,155.93,157.17,1608840.0,156.7,1610357.0
+EFG,2017-09-12,155.98,156.72,154.28,156.71,1692197.0,156.86,1687819.0
+EFG,2017-09-13,156.4,157.07,155.68,155.54,1211779.0,155.85,1210716.0
+XYZ,2017-09-05,63.9,64.51,63.13,63.95,1738651.0,63.33,1733249.0
+XYZ,2017-09-06,63.85,63.65,61.72,62.23,3730110.0,61.95,3725435.0
+XYZ,2017-09-07,61.97,61.93,59.47,60.46,6166046.0,60.64,6191712.0
+XYZ,2017-09-08,60.36,60.45,58.51,59.35,5173590.0,59.4,5174940.0
+XYZ,2017-09-11,60.04,59.92,57.68,58.24,5003322.0,58.02,5001118.0
+XYZ,2017-09-12,58.19,59.29,57.89,58.71,3633446.0,58.96,3635132.0
+XYZ,2017-09-13,59.01,60.66,58.8,60.33,3571591.0,60.46,3583560.0
+</code></pre></div></div>
+
+<p>The data provider will provide you with information for each field in the CSV. This csv has the fields ticker, date, open, high, low, close, volume, adj_close, adj_volume in that order. That means, the first line in the CSV has the following data:</p>
+
+<ul>
+  <li>ticker: ABC</li>
+  <li>date: 2017-09-05</li>
+  <li>open: 163.09</li>
+  <li>high: 164.24</li>
+  <li>low: 160.21</li>
+  <li>close: 162.63</li>
+  <li>volume: 29417590.0</li>
+  <li>adj_close: 162.49</li>
+  <li>adj_volume: 29414672.0</li>
+</ul>
+
+<h1 id="read_csv">Read_csv</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">price_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'prices.csv'</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">'ticker'</span><span class="p">,</span> <span class="s">'date'</span><span class="p">,</span> <span class="s">'open'</span><span class="p">,</span> <span class="s">'high'</span><span class="p">,</span> <span class="s">'low'</span><span class="p">,</span>
+                                             <span class="s">'close'</span><span class="p">,</span> <span class="s">'volume'</span><span class="p">,</span> <span class="s">'adj_close'</span><span class="p">,</span> <span class="s">'adj_volume'</span><span class="p">])</span>
+
+<span class="n">price_df</span>
+</code></pre></div></div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ticker</th>
+      <th>date</th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>volume</th>
+      <th>adj_close</th>
+      <th>adj_volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABC</td>
+      <td>2017-09-05</td>
+      <td>163.09</td>
+      <td>164.24</td>
+      <td>160.21</td>
+      <td>162.63</td>
+      <td>29417590.0</td>
+      <td>162.49</td>
+      <td>29414672.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ABC</td>
+      <td>2017-09-06</td>
+      <td>162.85</td>
+      <td>162.46</td>
+      <td>159.99</td>
+      <td>161.13</td>
+      <td>21131267.0</td>
+      <td>162.44</td>
+      <td>21169319.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ABC</td>
+      <td>2017-09-07</td>
+      <td>162.11</td>
+      <td>162.70</td>
+      <td>160.65</td>
+      <td>161.26</td>
+      <td>21722502.0</td>
+      <td>161.46</td>
+      <td>21719856.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ABC</td>
+      <td>2017-09-08</td>
+      <td>160.41</td>
+      <td>160.89</td>
+      <td>159.31</td>
+      <td>158.05</td>
+      <td>28311012.0</td>
+      <td>158.26</td>
+      <td>28305810.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ABC</td>
+      <td>2017-09-11</td>
+      <td>161.09</td>
+      <td>162.14</td>
+      <td>159.54</td>
+      <td>161.29</td>
+      <td>31075573.0</td>
+      <td>160.97</td>
+      <td>31163734.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ABC</td>
+      <td>2017-09-12</td>
+      <td>162.54</td>
+      <td>164.61</td>
+      <td>159.52</td>
+      <td>161.09</td>
+      <td>70921229.0</td>
+      <td>160.62</td>
+      <td>71097150.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ABC</td>
+      <td>2017-09-13</td>
+      <td>160.01</td>
+      <td>160.51</td>
+      <td>158.22</td>
+      <td>159.29</td>
+      <td>44580353.0</td>
+      <td>159.07</td>
+      <td>44260255.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>EFG</td>
+      <td>2017-09-05</td>
+      <td>154.45</td>
+      <td>154.69</td>
+      <td>153.17</td>
+      <td>154.52</td>
+      <td>1270203.0</td>
+      <td>153.58</td>
+      <td>1270679.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>EFG</td>
+      <td>2017-09-06</td>
+      <td>155.03</td>
+      <td>155.14</td>
+      <td>153.89</td>
+      <td>154.45</td>
+      <td>1195987.0</td>
+      <td>154.06</td>
+      <td>1196107.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>EFG</td>
+      <td>2017-09-07</td>
+      <td>154.73</td>
+      <td>155.36</td>
+      <td>153.60</td>
+      <td>155.68</td>
+      <td>1420730.0</td>
+      <td>155.60</td>
+      <td>1409098.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>EFG</td>
+      <td>2017-09-08</td>
+      <td>156.01</td>
+      <td>155.91</td>
+      <td>154.17</td>
+      <td>155.86</td>
+      <td>1438929.0</td>
+      <td>156.08</td>
+      <td>1445338.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>EFG</td>
+      <td>2017-09-11</td>
+      <td>157.07</td>
+      <td>157.71</td>
+      <td>155.93</td>
+      <td>157.17</td>
+      <td>1608840.0</td>
+      <td>156.70</td>
+      <td>1610357.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>EFG</td>
+      <td>2017-09-12</td>
+      <td>155.98</td>
+      <td>156.72</td>
+      <td>154.28</td>
+      <td>156.71</td>
+      <td>1692197.0</td>
+      <td>156.86</td>
+      <td>1687819.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>EFG</td>
+      <td>2017-09-13</td>
+      <td>156.40</td>
+      <td>157.07</td>
+      <td>155.68</td>
+      <td>155.54</td>
+      <td>1211779.0</td>
+      <td>155.85</td>
+      <td>1210716.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>XYZ</td>
+      <td>2017-09-05</td>
+      <td>63.90</td>
+      <td>64.51</td>
+      <td>63.13</td>
+      <td>63.95</td>
+      <td>1738651.0</td>
+      <td>63.33</td>
+      <td>1733249.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>XYZ</td>
+      <td>2017-09-06</td>
+      <td>63.85</td>
+      <td>63.65</td>
+      <td>61.72</td>
+      <td>62.23</td>
+      <td>3730110.0</td>
+      <td>61.95</td>
+      <td>3725435.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>XYZ</td>
+      <td>2017-09-07</td>
+      <td>61.97</td>
+      <td>61.93</td>
+      <td>59.47</td>
+      <td>60.46</td>
+      <td>6166046.0</td>
+      <td>60.64</td>
+      <td>6191712.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>XYZ</td>
+      <td>2017-09-08</td>
+      <td>60.36</td>
+      <td>60.45</td>
+      <td>58.51</td>
+      <td>59.35</td>
+      <td>5173590.0</td>
+      <td>59.40</td>
+      <td>5174940.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>XYZ</td>
+      <td>2017-09-11</td>
+      <td>60.04</td>
+      <td>59.92</td>
+      <td>57.68</td>
+      <td>58.24</td>
+      <td>5003322.0</td>
+      <td>58.02</td>
+      <td>5001118.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>XYZ</td>
+      <td>2017-09-12</td>
+      <td>58.19</td>
+      <td>59.29</td>
+      <td>57.89</td>
+      <td>58.71</td>
+      <td>3633446.0</td>
+      <td>58.96</td>
+      <td>3635132.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>XYZ</td>
+      <td>2017-09-13</td>
+      <td>59.01</td>
+      <td>60.66</td>
+      <td>58.80</td>
+      <td>60.33</td>
+      <td>3571591.0</td>
+      <td>60.46</td>
+      <td>3583560.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="problem-founded">Problem Founded</h1>
+
+<p>Data for all the tickers are stacked. We’re representing 3 dimensional data in 2 dimensions.</p>
+
+<p><img src="https://raw.githubusercontent.com/ChaunceyDong/ChaunceyDong.github.io/master/_posts_img/471589027028_.pic_hd.jpg" alt="" /></p>
+
+<h1 id="solve-dataframepivot">Solve: DataFrame.pivot</h1>
+
+<p>We can split each 3rd dimension into it’s own 2 dimension DataFrame. In our case, our third dimensions are “open”, “high”, “low”, “close”, “volume”, “adj_close”, and “adj_volume”. We’ll use the <a href="https://pandas.pydata.org/pandas-docs/version/0.21/generated/pandas.DataFrame.pivot.html"><code class="highlighter-rouge">DataFrame.pivot</code></a> function to generate these DataFrames.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">open_prices</span> <span class="o">=</span> <span class="n">price_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">'date'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s">'ticker'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">'open'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ticker</th>
+      <th>ABC</th>
+      <th>EFG</th>
+      <th>XYZ</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-09-05</th>
+      <td>163.09</td>
+      <td>154.45</td>
+      <td>63.90</td>
+    </tr>
+    <tr>
+      <th>2017-09-06</th>
+      <td>162.85</td>
+      <td>155.03</td>
+      <td>63.85</td>
+    </tr>
+    <tr>
+      <th>2017-09-07</th>
+      <td>162.11</td>
+      <td>154.73</td>
+      <td>61.97</td>
+    </tr>
+    <tr>
+      <th>2017-09-08</th>
+      <td>160.41</td>
+      <td>156.01</td>
+      <td>60.36</td>
+    </tr>
+    <tr>
+      <th>2017-09-11</th>
+      <td>161.09</td>
+      <td>157.07</td>
+      <td>60.04</td>
+    </tr>
+    <tr>
+      <th>2017-09-12</th>
+      <td>162.54</td>
+      <td>155.98</td>
+      <td>58.19</td>
+    </tr>
+    <tr>
+      <th>2017-09-13</th>
+      <td>160.01</td>
+      <td>156.40</td>
+      <td>59.01</td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

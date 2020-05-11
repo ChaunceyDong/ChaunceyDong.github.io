@@ -1,0 +1,190 @@
+I"�"<h1 id="new-data">New Data</h1>
+
+<p>new an example series of days</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s">'10/10/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s">'D'</span><span class="p">)</span>
+<span class="n">close_prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">))</span>
+<span class="n">close</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">close_prices</span><span class="p">,</span> <span class="n">dates</span><span class="p">)</span>
+<span class="n">close</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-10-10     0
+2018-10-11     1
+2018-10-12     2
+2018-10-13     3
+2018-10-14     4
+2018-10-15     5
+2018-10-16     6
+2018-10-17     7
+2018-10-18     8
+2018-10-19     9
+2018-10-20    10
+Freq: D, dtype: int64
+</code></pre></div></div>
+
+<h1 id="resample">Resample</h1>
+
+<p>Let’s say we want to bucket these days into one week period.</p>
+
+<p>To do that, we’ll use the <a href="https://pandas.pydata.org/pandas-docs/version/0.21/generated/pandas.DataFrame.resample.html">DataFrame.resample</a> function. The first parameter in this function is a string called <code class="highlighter-rouge">rule</code>, which is a representation of how to resample the data. This string representation is made using an offset alias. You can find a list of them <a href="http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases">here</a>. To create 1 week periods, we’ll set <code class="highlighter-rouge">rule</code> to “W”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s">'days'</span><span class="p">:</span> <span class="n">close</span><span class="p">,</span>
+    <span class="s">'weeks'</span><span class="p">:</span> <span class="n">close</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">'W'</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()})</span>
+</code></pre></div></div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>days</th>
+      <th>weeks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2018-10-10</th>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-11</th>
+      <td>1.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-12</th>
+      <td>2.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-13</th>
+      <td>3.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-14</th>
+      <td>4.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2018-10-15</th>
+      <td>5.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-16</th>
+      <td>6.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-17</th>
+      <td>7.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-18</th>
+      <td>8.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-19</th>
+      <td>9.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-20</th>
+      <td>10.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2018-10-21</th>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="ohlc">OHLC</h1>
+
+<p>Now that you’ve seen how Pandas resamples time series data, we can apply this to Open, High, Low, and Close (OHLC). Pandas provides the <a href="https://pandas.pydata.org/pandas-docs/version/0.21.0/generated/pandas.core.resample.Resampler.ohlc.html#pandas.core.resample.Resampler.ohlc"><code class="highlighter-rouge">Resampler.ohlc</code></a> function will convert any resampling frequency to OHLC data. Let’s get the Weekly OHLC.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">close</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">'W'</span><span class="p">)</span><span class="o">.</span><span class="n">ohlc</span><span class="p">()</span>
+</code></pre></div></div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2018-10-14</th>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2018-10-21</th>
+      <td>5</td>
+      <td>10</td>
+      <td>5</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="problem">Problem</h2>
+
+<p>Can you spot a potential problem with that? It has to do with resampling data that has already been resampled.</p>
+
+<p>We’re getting the OHLC from close data. If we want OHLC data from already resampled data, we should resample the first price from the open data, resample the highest price from the high data, etc..</p>
+
+<p>Converting Tick-By-Tick Data with this function is fine.</p>
+
+<h1 id="ohlc-20">OHLC 2.0</h1>
+
+<p>Implement <code class="highlighter-rouge">days_to_weeks</code> function to resample OHLC price data to weekly OHLC price data. You find find more Resampler functions <a href="https://pandas.pydata.org/pandas-docs/version/0.21.0/api.html#id44">here</a> for calculating high and low prices.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">days_to_weeks</span><span class="p">(</span><span class="n">open_prices</span><span class="p">,</span> <span class="n">high_prices</span><span class="p">,</span> <span class="n">low_prices</span><span class="p">,</span> <span class="n">close_prices</span><span class="p">):</span>
+    <span class="s">"""Converts daily OHLC prices to weekly OHLC prices.
+    
+    Parameters
+    ----------
+    open_prices : DataFrame
+        Daily open prices for each ticker and date
+    high_prices : DataFrame
+        Daily high prices for each ticker and date
+    low_prices : DataFrame
+        Daily low prices for each ticker and date
+    close_prices : DataFrame
+        Daily close prices for each ticker and date
+
+    Returns
+    -------
+    open_prices_weekly : DataFrame
+        Weekly open prices for each ticker and date
+    high_prices_weekly : DataFrame
+        Weekly high prices for each ticker and date
+    low_prices_weekly : DataFrame
+        Weekly low prices for each ticker and date
+    close_prices_weekly : DataFrame
+        Weekly close prices for each ticker and date
+    """</span>
+    
+    <span class="n">open_prices_weekly</span> <span class="o">=</span> <span class="n">open_prices</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">'W'</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">high_prices_weekly</span> <span class="o">=</span> <span class="n">high_prices</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span>
+    <span class="n">low_prices_weekly</span> <span class="o">=</span> <span class="n">low_prices</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span><span class="o">.</span><span class="nb">min</span><span class="p">()</span>
+    <span class="n">close_prices_weekly</span> <span class="o">=</span> <span class="n">close_prices</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">open_prices_weekly</span><span class="p">,</span> <span class="n">high_prices_weekly</span><span class="p">,</span> <span class="n">low_prices_weekly</span><span class="p">,</span> <span class="n">close_prices_weekly</span>
+
+</code></pre></div></div>
+
+:ET
