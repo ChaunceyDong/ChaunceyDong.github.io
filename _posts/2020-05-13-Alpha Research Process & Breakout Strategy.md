@@ -3,7 +3,7 @@
 layout:     post
 title:      Alpha Research Process & Breakout Strategy
 subtitle:   Notes of AI for Trading, Project 2
-date:       2020-05-10
+date:       2020-05-13
 author:     Chauncey
 header-img: img/post-bg-isos9-web.jpg
 catalog: true
