@@ -5,7 +5,7 @@ title:      Implement Black-Scholes Model
 subtitle:   OOP, with C++, Java and Python
 date:       2020-05-23
 author:     Chauncey
-header-img: img/post-bg-isos9-web.jpg
+header-img: img/tag-bg.jpg
 catalog: true
 tags:
     - C++
