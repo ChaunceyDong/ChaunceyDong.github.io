@@ -1,21 +1,23 @@
 ---
 
 layout:     post
-title:      Implement Black-Scholes Model with C++, Java and Python
-subtitle:   OOP
+title:      Implement Black-Scholes Model 
+subtitle:   OOP, with C++, Java and Python
 date:       2020-05-23
 author:     Chauncey
 header-img: img/post-bg-isos9-web.jpg
 catalog: true
 tags:
     - C++
+    - Java
+    - Python
     - OOP
     - Black-Scholes
 ---
 
 
 
-# Class Structure
+# Code Structure
 
 - Class: **Option**
   - Fileds: s, k, r, sigma, t
@@ -44,12 +46,13 @@ protected:
 public:
     // Constructor
     Option(double s, double k, double r, double sigma, double t) : s(s), k(k), r(r), sigma(sigma), t(t) {}
+
+  	// Method
+    // Getter & Setter
     double gets() const {
         return s;
     }
 
-    // Method
-    // Getter & Setter
     void sets(double s) {
         Option::s = s;
     }
@@ -100,7 +103,8 @@ public:
         double d2 = d1() - sigma * time_sqrt();
         return d2;
     }
-
+		
+  	// Cumulative Distribution Function
     double N(const double &z) {
         if (z > 6.0) { return 1.0; }; // this guards against overflow
         if (z < -6.0) { return 0.0; };
@@ -121,7 +125,7 @@ public:
     };
 };
 
-// 派生类
+// Derived Class
 class CallOption : public Option {
 public:
     CallOption(double s, double k, double r, double sigma, double t) : Option(s, k, r, sigma, t) {}
@@ -187,7 +191,8 @@ class Option {
 		this.sigma = sigma;
 		this.t = t;
 	}
-
+  
+	// Method
 	public double getS() {
 		return s;
 	}
@@ -242,7 +247,8 @@ class Option {
 		double d2 = d1() - sigma * time_sqrt();
 		return d2;
 	}
-
+	
+	// Cumulative Distribution Function
 	double N(double z) {
 		if (z > 6.0) {
 			return 1.0;
