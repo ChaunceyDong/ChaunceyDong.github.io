@@ -33,12 +33,17 @@ To minimize the portfolio variance, which is defined by our quadratic form $\mat
   x_A & x_B
   \end{bmatrix}
   $
+- covariance matrix
 
-- covariance matrix $P = 
-  \begin{bmatrix}
-  \sigma^2_A & \sigma_{A,B} \\ 
-  \sigma_{A,B} & \sigma^2_B 
-  \end{bmatrix}$
+$$
+P = 
+\begin{bmatrix}
+\sigma^2_A & \sigma_{A,B} \\ 
+\sigma_{A,B} & \sigma^2_B 
+\end{bmatrix}
+$$
+
+
 
 - quadratic form of variance $\sigma^2_p = \mathbf{x^T} \mathbf{P} \mathbf{x}$
 
@@ -117,7 +122,28 @@ $$
 
 >  where $m$ is the number of stocks in the portfolio, and $\lambda$ is a scaling factor that you can choose.
 
+### portfolio variance
 
+ quadratic form of the portfolio variance:
+$$
+\sigma^2_p = \mathbf{x^T} \mathbf{P} \mathbf{x}
+$$
+in which:
+
+$$
+\mathbf{x} = \begin{bmatrix}
+x_1 &...& x_M
+\end{bmatrix}
+$$
+
+$$
+\mathbf{P} = 
+\begin{bmatrix}
+\sigma^2_{1,1} & ... & \sigma^2_{1,m} \\ 
+... & ... & ...\\
+\sigma^2_{m,1} & ... & \sigma^2_{m,m}  \\
+\end{bmatrix}
+$$
 
 ### L2 norm
 
