@@ -6,6 +6,7 @@ subtitle:   Notes of AI for Trading, Project 2
 date:       2020-05-26
 author:     Chauncey
 header-img: img/home-bg-o.jpg
+mathjax: true
 catalog: true
 tags:
     - Python
