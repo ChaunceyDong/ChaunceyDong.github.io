@@ -44,8 +44,9 @@ To minimize the portfolio variance, which is defined by our quadratic form $\mat
 ## Constraint
 
 The sum of weights is 1.
-
- $\sum_{1}^{n}x = x_A + x_B = 1$
+$$
+\sum_{1}^{n}x = x_A + x_B = 1
+$$
 
 ## optimization
 
@@ -107,12 +108,11 @@ def optimize_twoasset_portfolio(varA, varB, rAB):
 ## Objective
 
 - **minimize the portfolio variance**
-
 - **closely track a market cap weighted index**. In other words, minimize the distance between the weights of our portfolio and the weights of the index.
 
-
-
-$Minimize \left [ \sigma^2_p + \lambda \sqrt{\sum_{1}^{m}(weight_i - indexWeight_i)^2} \right  ]$ 
+$$
+Minimize \left [ \sigma^2_p + \lambda \sqrt{\sum_{1}^{m}(weight_i - indexWeight_i)^2} \right  ]
+$$
 
 >  where $m$ is the number of stocks in the portfolio, and $\lambda$ is a scaling factor that you can choose.
 
