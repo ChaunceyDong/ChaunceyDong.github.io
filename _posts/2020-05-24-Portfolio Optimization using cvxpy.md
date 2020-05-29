@@ -120,6 +120,12 @@ $$
 Minimize \left [ \sigma^2_p + \lambda \sqrt{\sum_{1}^{m}(weight_i - indexWeight_i)^2} \right  ]
 $$
 
+
+$$
+Minimize \left [  \mathbf{x^T} \mathbf{P} \mathbf{x} + \lambda\left \| \mathbf{x} - \mathbf{index} \right \|_2 \right  ]
+$$
+
+
 >  where $m$ is the number of stocks in the portfolio, and $\lambda$ is a scaling factor that you can choose.
 
 ### portfolio variance
@@ -229,11 +235,45 @@ def optimize_portfolio(returns, index_weights, scale=.00001):
 
 
 
+# Example 3 Multi-Factor Model
 
+## Objective and Constraints
+Objective function is to maximizes $ \alpha^T * x \\ $, where $ x $ is the portfolio weights and $ \alpha $ is the alpha vector.
 
+Constraint:
+- $ r \leq risk_{\text{cap}}^2 \\ $
 
+  predicted risk be less than some maximum limit
 
+  
 
+- $ B^T * x \preceq factor_{\text{max}} \\ $
+
+- $ B^T * x \succeq factor_{\text{min}} \\ $
+
+  on the maximum and minimum portfolio factor exposures
+
+  
+
+- $ x^T\mathbb{1} = 0 \\ $
+
+  "market neutral constraint": the sum of the weights must be zero
+
+  
+
+- $ \|x\|_1 \leq 1 \\ $
+
+   leverage constraint: the sum of the absolute value of the weights must be less than or equal to 1.0. 
+
+  
+
+- $ x \succeq weights_{\text{min}} \\ $
+
+- $ x \preceq weights_{\text{max}} $
+
+   minimum and maximum limits on individual holdings
+
+  
 
 
 
