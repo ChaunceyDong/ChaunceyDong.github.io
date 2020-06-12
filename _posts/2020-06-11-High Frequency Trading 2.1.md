@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      High Frequency Trading 2.1：Market Maker
+title:      High Frequency Trading 2：Market Maker
 subtitle:   来自《我是高频交易工程师：知乎董可人自选集 (知乎「盐」系列)》
 date:       2020-06-11
 author:     Chauncey
