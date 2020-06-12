@@ -20,7 +20,7 @@ tags:
 
 # 类型分类
 
-根据美国证券交易委员会（SEC）2010 年给出的这份报告 Concept Release on Equity Market Structure |http://www.sec.gov/rules/concept/2010/34-61358.pdf 中的定义，高频交易主要包括这几种x类型：
+根据美国证券交易委员会（SEC）2010 年给出的这份报告 Concept Release on Equity Market Structure http://www.sec.gov/rules/concept/2010/34-61358.pdf 中的定义，高频交易主要包括这几种x类型：
 
 
 
@@ -152,7 +152,7 @@ Bid 表示买家，Offer 表示卖家，这张报价单表示买卖双方发出�
 
 
 
-什么是合适的时机？有一些数据应该是相关的，比如买卖价差 spread，买单量对卖单量的比值，等等。对这些数据，你可以在历史数据上做回归分析，建立起他们和冰山订单之间的线性／非线性模型。通过历史数据训练出来的这个模型，就可以作为你在实时交易时使用的冰山订单探测器。这是 On the Dark Side of the Market: Identifying and Analyzing Hidden Order Placements | http://www.tinbergen.nl/~sofie2012/papers/HautschHuang2012.pdf 这篇论文使用的方法。
+什么是合适的时机？有一些数据应该是相关的，比如买卖价差 spread，买单量对卖单量的比值，等等。对这些数据，你可以在历史数据上做回归分析，建立起他们和冰山订单之间的线性／非线性模型。通过历史数据训练出来的这个模型，就可以作为你在实时交易时使用的冰山订单探测器。这是 On the Dark Side of the Market: Identifying and Analyzing Hidden Order Placements  http://www.tinbergen.nl/~sofie2012/papers/HautschHuang2012.pdf 这篇论文使用的方法。
 
 
 
@@ -172,7 +172,7 @@ $$
 
 
 
-所以接下来介绍的，才是真正具有高频玩家神采的方法，来自 Prediction of Hidden Liquidity in the Limit Order Book of GLOBEX Futures | http://www.iijournals.com/doi/abs/10.3905/jot.2013.8.3.068#sthash.rg6lIM8a.dpbs 这篇论文。
+所以接下来介绍的，才是真正具有高频玩家神采的方法，来自 Prediction of Hidden Liquidity in the Limit Order Book of GLOBEX Futures  http://www.iijournals.com/doi/abs/10.3905/jot.2013.8.3.068#sthash.rg6lIM8a.dpbs 这篇论文。
 
 
 
@@ -210,7 +210,7 @@ $$
 
 
 
-从这两点出发，可以对 V 和 p 建立概率模型，即计算一个给定的（V，p）值组合出现的概率是多少？这里不去深入探讨数学分析，感兴趣的朋友可以自己去看原文。简单说，可以在历史数据上通过 kernel estimation 技术来估算他们的概率密度函数的形状。顺便提一下，如果你亲手编写过这种估算程序，就会理解我为什么在「要想成为一名优秀的 Quant 需要什么样的编程水平？| http://www.zhihu.com/question/24577564/answer/28678695」这个答案中如此强调编程的重要性。在数据上估算出来的概率密度函数可能会是这样的：
+从这两点出发，可以对 V 和 p 建立概率模型，即计算一个给定的（V，p）值组合出现的概率是多少？这里不去深入探讨数学分析，感兴趣的朋友可以自己去看原文。简单说，可以在历史数据上通过 kernel estimation 技术来估算他们的概率密度函数的形状。顺便提一下，如果你亲手编写过这种估算程序，就会理解我为什么在「要想成为一名优秀的 Quant 需要什么样的编程水平？ http://www.zhihu.com/question/24577564/answer/28678695」这个答案中如此强调编程的重要性。在数据上估算出来的概率密度函数可能会是这样的：
 
 
 
