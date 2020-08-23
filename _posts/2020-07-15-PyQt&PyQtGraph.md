@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Read Dirty Csv
+title:      PyQt & PyQtGraph
 subtitle:   
 date:       2020-07-09
 author:     Chauncey
