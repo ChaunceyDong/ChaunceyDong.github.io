@@ -51,11 +51,11 @@ HFT会基于**<u>订单流动</u>**信号进行交易
 
 ~ Pairs trade
 
+## 事件交易
 
+Event-driven Strategy
 
-
-
-
+<img src="https://github.com/ChaunceyDong/ChaunceyDong.github.io/blob/master/_posts_img/Event-driven_Strategy.jpg?raw=true" />
 
 # 经典策略举例
 
